@@ -1,0 +1,35 @@
+@media only screen and (min-width: 768px)  {
+    .layout .sidebar .sidebar-toggler {
+      display: none;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .layout .navbar .header_fluid {
+      width: 100vw;
+    }
+    .layout .sidebar:not(:hover) + .navbar .layout_left_side {
+      display: none;
+    }
+    .layout .sidebar:not(:hover)  {
+      margin-left: -275px !important;
+      box-shadow: 1px 1px 2px 0.5px #8A93A2;
+      top: 0;
+      height: 100vh;
+    }
+    .layout .sidebar:hover + .navbar .layout_left_side {
+      position: absolute;
+      z-index: 9;
+      background-color: white;
+    }
+    .layout .sidebar:hover {
+      margin-left: 0 !important;
+    }
+    .layout .sidebar .sidebar-toggler {
+      display: flex !important;
+    }
+    .layout_header-nav .layout_left_side img, .navbar-brand.layout_left_side img {
+      max-width: 70px;
+      max-height: 70px;
+    }
+  }

@@ -1,0 +1,205 @@
+.layout .navbar {
+    height: 72px;
+  }
+  
+  .layout .layout_sidebar {
+    width: 299px;
+  }
+  .layout_header-nav .layout_left_side {
+    width: 280px;
+    min-width: 280px;
+    margin: 0;
+    display: flex;
+  }
+  .header_companny_description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 120px;
+  }
+  .header_companny_description {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    span:nth-child(1) {
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 2.8rem;
+      color: #1c1c1c;
+      margin-top: auto;
+    }
+    span:nth-child(2) {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: #969696;
+      margin: 0 auto auto;
+      margin: auto;
+    }
+  }
+  .layout_header-nav .header_fluid {
+    padding-left: 19px;
+    padding-right: 19px;
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #585757;
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+    width: 100vw;
+    .navbar-nav {
+      flex-direction: row;
+      margin-right: auto;
+      margin-left: 0;
+    }
+    .navbar-nav .nav-link:not(:nth-child(1)) {
+      margin: 0 auto;
+    }
+  }
+  .layout_header-nav .header_fluid .navbar-nav .nav-link {
+    font-weight: 500;
+    &.active {
+      color: #0085ff;
+    }
+  }
+  .layout_header-nav .header_fluid .navbar-nav .nav-item {
+    padding-left: 10px;
+  }
+  .layout_header-nav .layout_left_side img, .navbar-brand.layout_left_side img {
+    max-width: 100px;
+    max-height: 100px;
+    background-color: white;
+    top: 0;
+    left: 10px;
+    position: absolute;
+  }
+  
+  .header_links-wrapper,
+  .header_user_info-wrapper {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    p,
+    img {
+      cursor: pointer;
+    }
+  }
+  
+  .user_avatar-wrapper img {
+    border: 1px solid #e8e8e8;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+  
+  .user_avatar-wrapper {
+    position: relative;
+    font-weight: 500;
+    color: #1c1c1c;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    &::after {
+      content: "";
+      position: absolute;
+      right: 3px;
+      bottom: 10px;
+      width: 1px;
+      height: 1px;
+      background: #fff;
+      border-radius: 50%;
+    }
+  }
+  .user_avatar-wrapper.online::after {
+    box-shadow: 1px 6px 0 5px #00ba34, 1px 6px 0px 9px #fff;
+  }
+  .user_avatar-wrapper:not(.online)::after {
+    box-shadow: 1px 6px 0 5px #cb2027, 1px 6px 0px 9px #fff;
+  }
+  
+  .header_user_info-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+  }
+  
+  .header_user_info-wrapper .user_info {
+    display: flex;
+  }
+  
+  .header_user_info-wrapper .user_info .dropdown_icon {
+    margin-left: 11px;
+    width: 10px;
+    height: 6.4px;
+  }
+  .header_user_info-wrapper .user_info .settings_icon {
+    margin-left: 18px;
+    width: 19.5px;
+    height: 20px;
+  }
+  
+  .user_name {
+    display: inline;
+    font-weight: 500;
+  }
+  
+  .header_user_info-wrapper span:nth-child(2) {
+    margin: auto 0 auto 8px;
+  }
+  .layout .sidebar {
+    height: calc(100vh - 72px);
+    top: 72px;
+    position: absolute;
+  }
+  .layout .sidebar, .layout .sidebar-brand {
+    width: 299px;
+    background-color: #F7F7F7;
+  }
+  .layout .sidebar-brand {
+    height: 52px;
+  }
+  
+  .layout .sidebar .nav-link {
+    color: #585757;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    padding: 10px 13px;
+  }
+  .layout .sidebar .nav-link.active, .layout .sidebar .nav-link:hover {
+    color: #1C1C1C;
+  }
+  
+  .layout .sidebar .nav-item {
+    margin-left: 27px;
+    display: flex;
+    &.active {
+      background-color: #E5F3FF;
+      color: #1C1C1C;
+      img {
+        filter: invert(41%) sepia(36%) saturate(7159%) hue-rotate(194deg) brightness(102%) contrast(105%);
+      }
+    }
+  }
+  .layout .sidebar .nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 14px;
+  }
+  
+  .layout .sidebar .nav-item span {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
+  .layout .navbar {
+    top: 0;
+    position: absolute;
+  }
+  .layout .navbar .layout_left_side {
+    translate: all 1s ease;
+  }
+
+  .layout .sidebar .nav-item a[href="/pushnotifications"]:not(.active) img {
+    filter: invert(71%) sepia(7%) saturate(19%) hue-rotate(6deg) brightness(84%) contrast(84%);
+  }
+  .layout .sidebar .nav-item a[href="/pushnotifications"].active img {
+    filter: none;
+  }
