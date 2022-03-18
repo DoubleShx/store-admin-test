@@ -3,8 +3,9 @@ import {
   CCol,
   CContainer,
   CFormInput,
-  CInputGroup,
-  CInputGroupText,
+  CPagination,
+  CPaginationItem,
+  CSpinner,
   CTable,
   CTableBody,
   CTableDataCell,
@@ -13,10 +14,10 @@ import {
   CTableRow,
 } from "@coreui/react";
 
-export const CustomTable = ({ fields, products, filters, onFilterChange }) => {
+export const CustomTable = ({ fields, products, filters, onFilterChange, currentPage, setCurrentPage, pagesCount, fetchingData }) => {
   return (
     <CContainer>
-      <CTable className="custom_table">
+      <CTable className={`custom_table ${fetchingData ? 'with_loader' : ''}`}>
         <CTableHead>
           <CTableRow>
             {fields.map((field) => (
@@ -60,7 +61,20 @@ export const CustomTable = ({ fields, products, filters, onFilterChange }) => {
             </CTableRow>
           ))}
         </CTableBody>
+        <CSpinner size="sm" variant="grow"/>
+        {!products.length && !fetchingData ? <span className="table_no_data-info">There are no data with this params</span> : null}
       </CTable>
+      <CPagination aria-label="" className="custom_table_pagination">
+  <CPaginationItem aria-label="Previous" disabled={!pagesCount || +currentPage === 1} onClick={()=>setCurrentPage(+currentPage-1)}>
+    <span aria-hidden="true">&laquo;</span>
+  </CPaginationItem>
+  {[...Array(+pagesCount).keys()].map(i => (
+    <CPaginationItem active={+currentPage === +i+1} onClick={()=>setCurrentPage(i+1)}>{i+1}</CPaginationItem>
+  ))}
+  <CPaginationItem aria-label="Next" disabled={!pagesCount || +pagesCount === +currentPage} onClick={()=>setCurrentPage(+currentPage+1)}>
+    <span aria-hidden="true">&raquo;</span>
+  </CPaginationItem>
+</CPagination>
     </CContainer>
   );
 };

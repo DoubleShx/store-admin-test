@@ -1,10 +1,6 @@
 import {
   CCardBody,
   CCardHeader,
-  CCol,
-  CFormInput,
-  CInputGroup,
-  CInputGroupText,
   CRow,
 } from "@coreui/react";
 import { useState } from "react";
@@ -27,23 +23,37 @@ const fields = [
 
 function Fruits() {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [filters, setFilter] = useState(getTableFilters(fields));
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pagesCount, setPagesCount] = useState('');
+  const [size, setSize] = useState(100)
+  const [fetchingData, setFetchingData] = useState(true)
   useEffect(() => {
-    getData();
+    getData(1);
   }, []);
 
-  const getData = () => {
+  const getData = (page = currentPage) => {
+    setFetchingData(true)
     httpGet({
       url: "variations",
+      params: {
+        page,
+      },
     })
       .then((res) => {
         if (res.data.items ?? []) {
           setProducts(restructureFetchedProducts(res.data.items));
           setFilteredProducts(restructureFetchedProducts(res.data.items));
         }
+        setPagesCount((res.data.total_count / 100).toFixed())
+        setCurrentPage(page)
+        setFetchingData(false)
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        setFetchingData(false)
+      });
   };
 
   const restructureFetchedProducts = (products) => {
@@ -63,32 +73,41 @@ function Fruits() {
   };
 
   const filterAndSortFunction = (filters, productsArray = products) => {
-    let currentFilters = Object.entries(filters)
-    console.log('filtersArray', currentFilters)
+    let currentFilters = Object.entries(filters);
+    console.log("filtersArray", currentFilters);
     let filteredArray = productsArray.filter((product) => {
-      let filterResult = true
-      currentFilters.forEach(filter => {
-        // console.log('product', (product[filter[0]]).includes('119'))
+      let filterResult = true;
+      currentFilters.forEach((filter) => {
         if (filterResult) {
-          // console.log(product[filter[0]].includes('119'))
-        if (typeof product[filter[0]] === 'number' && !((`${product[filter[0]]}`).includes(filter[1]))) {
-          filterResult = false
+          if (
+            typeof product[filter[0]] === "number" &&
+            !`${product[filter[0]]}`.includes(filter[1])
+          ) {
+            filterResult = false;
+          } else if (
+            typeof product[filter[0]] === "string" &&
+            !`${product[filter[0]]}`
+              .toUpperCase()
+              .includes(filter[1].toUpperCase())
+          ) {
+            filterResult = false;
+          }
         }
-        else if (typeof product[filter[0]] === 'string' && !(`${product[filter[0]]}`.toUpperCase().includes(filter[1].toUpperCase()))) {
-          filterResult = false
-        }
-      }
-      })
-      return filterResult
-    })
-  let sortedAndFilteredArray = filteredArray.sort((a, b) => a.productName.toUpperCase().localeCompare(b.productName.toUpperCase()))
-    setFilteredProducts(sortedAndFilteredArray)
+      });
+      return filterResult;
+    });
+    let sortedAndFilteredArray = filteredArray.sort((a, b) =>
+      a.productName.toUpperCase().localeCompare(b.productName.toUpperCase())
+    );
+    setFilteredProducts(sortedAndFilteredArray);
   };
 
+  const pagination = (e) => {
+    getData(e)
+  }
+
   return (
-    <div
-      className="content_side fruits_page"
-    >
+    <div className="content_side fruits_page">
       <BreadCrumbs
         pageHistory={[
           { name: "test", link: "#" },
@@ -106,6 +125,10 @@ function Fruits() {
             products={filteredProducts}
             filters={filters}
             onFilterChange={getFilteredProducts}
+            currentPage={currentPage}
+            setCurrentPage={pagination}
+            pagesCount={pagesCount}
+            fetchingData={fetchingData}
           />
         </CRow>
       </CCardBody>
