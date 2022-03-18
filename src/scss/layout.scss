@@ -82,6 +82,15 @@
       cursor: pointer;
     }
   }
+  .header_user_info-wrapper .collapse, .header_user_info-wrapper .collapsing {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    width: 185px
+  }
+  .header_user_info-wrapper .collapse .card-body button, .header_user_info-wrapper .collapsing .card-body button { 
+    width: 100%;
+  }
   
   .user_avatar-wrapper img {
     border: 1px solid #e8e8e8;
@@ -197,10 +206,10 @@
     translate: all 1s ease;
   }
 
-  .layout .sidebar .nav-item a[href="/pushnotifications"]:not(.active) img {
+  .layout .sidebar .nav-item a[href="/notes"]:not(.active) img {
     filter: invert(71%) sepia(7%) saturate(19%) hue-rotate(6deg) brightness(84%) contrast(84%);
   }
-  .layout .sidebar .nav-item a[href="/pushnotifications"].active img {
+  .layout .sidebar .nav-item a[href="/notes"].active img {
     filter: none;
   }
 

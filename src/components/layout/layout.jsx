@@ -13,12 +13,13 @@ export default function Layout(props) {
 
   useEffect(() => {
     getBreadCrumbs();
-  }, []);
+  }, [location]);
 
   useEffect(() => {
+    console.log(breadCrumbs)
     if (breadCrumbs[0] === "login") {
       if (cookie.get('access_token')?.length)
-      navigate("/pushnotifications");
+      navigate("/fruits");
     }
   }, [breadCrumbs]);
 
@@ -31,7 +32,7 @@ export default function Layout(props) {
 
   return (
     <div className="layout">
-      <SideBar />
+      <SideBar breadcrumbs={breadCrumbs} />
       <Header breadcrumbs={breadCrumbs} />
     </div>
   );

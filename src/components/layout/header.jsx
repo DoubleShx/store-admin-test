@@ -1,5 +1,9 @@
 import {
+  CButton,
+  CCard,
+  CCardBody,
   CCol,
+  CCollapse,
   CContainer,
   CNavbar,
   CNavbarNav,
@@ -8,6 +12,8 @@ import {
   CRow,
 } from "@coreui/react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 import { CompanyInfo } from "../companyInfo";
 
 const headerLinksArray = ["home", "users", "txns", "pg", "account"];
@@ -17,9 +23,9 @@ const HeaderLinks = (props) => {
     <CNavbarNav>
       {headerLinksArray.map((item, index) => (
         <CNavItem key={index}>
-          <CNavLink href={`/${item}`} active={props.breadcrumbs[0] === item}>
+          <Link to={`/${item}`} className={`nav-link ${props.breadcrumbs[0] === item ? 'active' : ''}`}>
             {item.charAt(0).toUpperCase() + item.slice(1)}
-          </CNavLink>
+          </Link>
         </CNavItem>
       ))}
     </CNavbarNav>
@@ -28,9 +34,17 @@ const HeaderLinks = (props) => {
 
 const UserInfo = () => {
   const [isOnline, setIsOnline] = useState(true);
+  const [dropdown, setDropdown] = useState(false)
+  const cookie = new Cookies()
+  const navigate = useNavigate()
+  const Logout = () => {
+    cookie.remove('access_token', { path: '/' })
+    navigate('/login')
+    setDropdown(false)
+  }
   return (
     <CCol xs="4" sm="4" md="6" className="header_user_info-wrapper">
-      <div className="user_info">
+      <div className="user_info" onClick={()=>setDropdown(!dropdown)}>
         <span className={`user_avatar-wrapper ${isOnline ? "online" : ""}`}>
           <img src="assets/avatar.png" alt="ava" />
         </span>
@@ -40,6 +54,7 @@ const UserInfo = () => {
             className="dropdown_icon"
             src="assets/icons/dropdown.png"
             alt="dropdown"
+            
           />
           <img
             className="settings_icon"
@@ -48,6 +63,13 @@ const UserInfo = () => {
           />
         </span>
       </div>
+      <CCollapse visible={dropdown}>
+      <CCard className="user_dropdown">
+        <CCardBody>
+        <CButton onClick={Logout}>Logout</CButton>
+        </CCardBody>
+      </CCard>
+    </CCollapse>
     </CCol>
   );
 };
