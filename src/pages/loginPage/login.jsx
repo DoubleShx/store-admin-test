@@ -17,9 +17,9 @@ import { httpPost } from "../../api";
 
 function LoginPage() {
   const [formsData, setFormsData] = useState({
-    username: { value: "user_task", changed: false },
-    password: { value: "user_task", changed: false },
-    subdomain: { value: "toko", changed: true },
+    username: { value: "", changed: false },
+    password: { value: "", changed: false },
+    subdomain: { value: "", changed: true },
     formSubmitted: false,
   });
   let navigate = useNavigate();
