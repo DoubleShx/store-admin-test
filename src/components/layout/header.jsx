@@ -46,7 +46,7 @@ const UserInfo = () => {
     <CCol xs="4" sm="4" md="6" className="header_user_info-wrapper">
       <div className="user_info" onClick={()=>setDropdown(!dropdown)}>
         <span className={`user_avatar-wrapper ${isOnline ? "online" : ""}`}>
-          <img src="assets/icons/avatar.png" alt="ava" />
+          <img src="assets/icons/Avatar.png" alt="ava" />
         </span>
         <span>
           <p className="user_name">James Bond</p>
