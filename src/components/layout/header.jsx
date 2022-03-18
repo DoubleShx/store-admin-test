@@ -81,7 +81,7 @@ export default function Header(props) {
         return [...prevItem, {name: item, link: `/${item}`}]
       }
       else return prevItem
-    }, [{ name: "Dashboard", link: "/" },]) 
+    }, [{ name: "Home", link: "/home" },]) 
   }
   return (
     <>

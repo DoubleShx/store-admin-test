@@ -17,7 +17,7 @@ export default function Layout(props) {
   }, [location]);
 
   useEffect(() => {
-    if (breadCrumbs[0] === "login") {
+    if (breadCrumbs[0] === "login" || !breadCrumbs[0]) {
       if (cookie.get('access_token')?.length)
       navigate("/fruits");
     }
