@@ -72,9 +72,10 @@
     justify-content: space-between;
 }
 .App .content_side .content_body .main_content_row {
-    height: calc(100% - 167.5px);
+    height: calc(100% - 157.5px);
     margin: 0;
     display: flex;
+    overflow: auto;
 }
 .App .content_side .content_body {
     height: calc(100% - 72px - 62px);
