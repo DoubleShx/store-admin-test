@@ -54,6 +54,7 @@ httpClient.interceptors.response.use(response => {
   if (parseInt(error.response?.status) === 401) {
     notyf.error(error.response.data.message)
     cookie.remove("access_token")
+    if (!window.location.href.includes("/login"))
     window.location.href = "/login"
   }
 

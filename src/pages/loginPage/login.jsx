@@ -11,7 +11,6 @@ import { useState } from "react";
 import { CompanyInfo } from "../../components/companyInfo";
 import Cookies from "universal-cookie";
 import { Notyf } from "notyf";
-import axios from "axios";
 import { useNavigate } from "react-router";
 import { httpPost } from "../../api";
 
@@ -19,7 +18,7 @@ function LoginPage() {
   const [formsData, setFormsData] = useState({
     username: { value: "", changed: false },
     password: { value: "", changed: false },
-    subdomain: { value: "", changed: true },
+    subdomain: { value: "toko", changed: true },
     formSubmitted: false,
   });
   let navigate = useNavigate();
@@ -79,7 +78,7 @@ function LoginPage() {
           <form className="login_form" onSubmit={(e) => onSubmitForm(e)}>
             <CInputGroup className="">
               <CCol className="form_group_wrapper">
-                <label htmlFor="username">Email</label>
+                <label htmlFor="username">UserName</label>
                 <CFormInput
                   id="username"
                   name="username"
@@ -89,7 +88,6 @@ function LoginPage() {
                   }`}
                   placeholder="*field is required"
                   onChange={inputFormChange}
-                  onClick={() => console.log("test", formsData)}
                   value={formsData.username.value}
                   required
                 />
