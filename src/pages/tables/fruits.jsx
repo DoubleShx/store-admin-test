@@ -108,12 +108,12 @@ function Fruits() {
 
   return (
     <div className="content_side fruits_page">
-      <BreadCrumbs
+      {/* <BreadCrumbs
         pageHistory={[
           { name: "test", link: "#" },
           { name: "fruits", link: "/fruits" },
         ]}
-      />
+      /> */}
       <CCardBody className="content_body p-relative">
         <CCardHeader>
           <CompanyInfo />

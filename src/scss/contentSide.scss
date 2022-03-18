@@ -4,21 +4,24 @@
 }
 .App .content_side {
     width: calc(100vw - 299px);
-    height: calc(100vh - 72px);
-    transform: translate(299px, 72px);
+    height: calc(100vh - 150px);
+    transform: translate(299px, 150px);
 }
 
 .App .content_side.login_page ~ .layout {
     display: none;
 }
 
-.App .content_side .breadcrumbs-wrapper {
+.App .layout .breadcrumbs-wrapper {
     height: 100px;
+    position: absolute;
+    top: 70px;
+    left: 300px;
 }
-.App .content_side .breadcrumbs-wrapper {
+.App .layout .breadcrumbs-wrapper {
     display: flex;
 }
-.App .content_side .breadcrumbs-wrapper a, .App .content_side .breadcrumbs-wrapper p {
+.App .layout .breadcrumbs-wrapper a, .App .layout .breadcrumbs-wrapper p {
     color: #1C1C1C;
     font-weight: 500;
     font-size: 3.6rem;
@@ -78,7 +81,7 @@
     overflow: auto;
 }
 .App .content_side .content_body {
-    height: calc(100% - 72px - 62px);
+    height: calc(100% - 20px);
     width: calc(100% - 67px);
     background-color: white;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.06), 0px 1px 1px rgba(0, 0, 0, 0.08);

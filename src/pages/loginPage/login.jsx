@@ -13,6 +13,7 @@ import Cookies from "universal-cookie";
 import { Notyf } from "notyf";
 import { useNavigate } from "react-router";
 import { httpPost } from "../../api";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
   const [formsData, setFormsData] = useState({
@@ -63,12 +64,6 @@ function LoginPage() {
 
   return (
     <div className="content_side login_page">
-      {/* <BreadCrumbs
-        pageHistory={[
-          { name: "test", link: "#" },
-          { name: "login", link: "/login" },
-        ]}
-      /> */}
       <CCardBody className="content_body">
         <CCardHeader>
           <CompanyInfo />
@@ -117,9 +112,9 @@ function LoginPage() {
             >
               Login
             </CButton>
-            <a href="/login" className="password_recover_link">
+            <Link to="/login" className="password_recover_link">
               Forgot your password?
-            </a>
+            </Link>
           </form>
         </CRow>
       </CCardBody>

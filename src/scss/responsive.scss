@@ -32,9 +32,16 @@
       max-width: 70px;
       max-height: 70px;
     }
+    #root .App .layout .breadcrumbs-wrapper {
+      display: none;
+    }
     #root .App .content_side {
       width: calc(100vw - 35px);
-      transform: translate(35px, 72px);
+      transform: translate(35px, 100px);
+      height: calc(100% - 110px);
+    }
+    #root .App .content_side .content_body {
+      height: 100%;
     }
     #root .App .content_side .content_body {
       width: calc(100% - 10px);

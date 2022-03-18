@@ -8,12 +8,12 @@ import {
   CNavbar,
   CNavbarNav,
   CNavItem,
-  CNavLink,
   CRow,
 } from "@coreui/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import { BreadCrumbs } from "../breadcrumbs";
 import { CompanyInfo } from "../companyInfo";
 
 const headerLinksArray = ["home", "users", "txns", "pg", "account"];
@@ -75,7 +75,16 @@ const UserInfo = () => {
 };
 
 export default function Header(props) {
+  const getpageHistory = () => {
+    return props.breadcrumbs.reduce((prevItem, item) => {
+      if (item) {
+        return [...prevItem, {name: item, link: `/${item}`}]
+      }
+      else return prevItem
+    }, [{ name: "Dashboard", link: "/" },]) 
+  }
   return (
+    <>
     <CNavbar
       expand="lg"
       colorScheme="light"
@@ -92,5 +101,9 @@ export default function Header(props) {
         </CRow>
       </CContainer>
     </CNavbar>
+    <BreadCrumbs
+        pageHistory={getpageHistory()}
+      />
+    </>
   );
 }
